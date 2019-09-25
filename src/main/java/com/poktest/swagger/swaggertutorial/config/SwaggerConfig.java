@@ -1,5 +1,6 @@
 package com.poktest.swagger.swaggertutorial.config;
 
+import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -9,6 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @EnableSwagger2
@@ -20,10 +22,15 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.poktest.swagger.swaggertutorial.api.controller"))
                 //.paths(PathSelectors.ant("/api/**"))
-                .paths(regex("/api.*"))  // to use this method much import static springfox.documentation.builders.PathSelectors.regex;
+                //.paths(regex("/api.*"))  // to use this method much import static springfox.documentation.builders.PathSelectors.regex;
+                .paths(postPaths())
                 .build()
                 .apiInfo(metaInfo());
 
+    }
+
+    private Predicate<String> postPaths() {
+        return or(regex("/api/hello.*"), regex("/api/user.*"));
     }
 
     //custom infomation
