@@ -3,6 +3,7 @@ package com.poktest.swagger.swaggertutorial.config;
 import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -35,15 +36,25 @@ public class SwaggerConfig {
 
     //custom infomation
     private ApiInfo metaInfo() {
-        ApiInfo apiInfo = new ApiInfo(
-                "Spring Boot Swagger Example API",  // title
-                "Spring Boot Swagger Example API for youtube",  // description
-                "1.0",
-                "Terms of Service",
-                new Contact("PokAha","https://www.youtube.com","poktest@mail.com"),
-                "Apache License Version 2.0",
-                "https://www.google.com"
-        );
-        return apiInfo;
+//        ApiInfo apiInfo = new ApiInfo(
+//                "Spring Boot Swagger Example API",  // title
+//                "Spring Boot Swagger Example API for youtube",  // description
+//                "1.0",
+//                "Terms of Service",
+//                new Contact("PokAha","https://www.youtube.com","poktest@mail.com"),
+//                "Apache License Version 2.0",
+//                "https://www.google.com"
+//        );
+//        return apiInfo;
+
+        return new ApiInfoBuilder().title("JavaInUse API")
+                .description("JavaInUse API reference for developers")
+                .termsOfServiceUrl("http://javainuse.com")
+                .contact("javainuse@gmail.com").license("JavaInUse License")
+                .licenseUrl("javainuse@gmail.com").version("1.0").build();
+
+
+
+
     }
 }
